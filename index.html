@@ -18,7 +18,24 @@
       75%, 100% { background-image: url('images/img8.jpg'); }
     }
 
-    /* Hide scrollbar */
+    /* Continuous scroll animation */
+    .slider-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+    .slider-track {
+      display: flex;
+      width: max-content;
+      animation: scrollLeft 25s linear infinite;
+    }
+    .slider-wrapper:hover .slider-track {
+      animation-play-state: paused;
+    }
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
     .scrollbar-hide::-webkit-scrollbar { display: none; }
     .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
@@ -67,22 +84,17 @@
     </div>
   </section>
 
-  <!-- FEATURED PROJECTS (3 at a time + Auto-scroll) -->
+  <!-- FEATURED PROJECTS (Continuous 3-card slider) -->
   <section class="py-16 container mx-auto px-6">
     <h2 class="text-3xl font-semibold text-indigo-700 mb-10 text-center">Our Featured Projects</h2>
 
-    <div class="relative overflow-hidden">
-      <!-- Left Arrow -->
-      <button id="prevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full shadow-md hover:bg-indigo-700 transition z-10">
-        &#10094;
-      </button>
+    <div class="slider-wrapper">
+      <div class="slider-track">
 
-      <!-- Slider Track -->
-      <div id="projectSlider" class="flex transition-transform duration-700 ease-in-out scrollbar-hide">
-
-        <!-- Each Card -->
-        <div class="min-w-[33.33%] px-2">
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+        <!-- ORIGINAL PROJECT SET -->
+        <div class="flex gap-6">
+          <!-- Repeat all your cards here -->
+          <div class="w-[360px] bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
             <img src="images/1.jpg" class="w-full h-64 object-cover" alt="DGS Sheetal Sky">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹1.80 Cr</p>
@@ -93,10 +105,8 @@
               <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
             </div>
           </div>
-        </div>
 
-        <div class="min-w-[33.33%] px-2">
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+          <div class="w-[360px] bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
             <img src="images/2.jpg" class="w-full h-64 object-cover" alt="DGS GuruPrasad">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹2.80 Cr</p>
@@ -107,10 +117,8 @@
               <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
             </div>
           </div>
-        </div>
 
-        <div class="min-w-[33.33%] px-2">
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+          <div class="w-[360px] bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
             <img src="images/3.jpg" class="w-full h-64 object-cover" alt="DGS Gurudarshan">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹4.60 Cr</p>
@@ -121,11 +129,8 @@
               <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
             </div>
           </div>
-        </div>
 
-        <!-- Add More -->
-        <div class="min-w-[33.33%] px-2">
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+          <div class="w-[360px] bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
             <img src="images/4.jpg" class="w-full h-64 object-cover" alt="DGS Harmony">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹3.50 Cr</p>
@@ -136,10 +141,8 @@
               <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
             </div>
           </div>
-        </div>
 
-        <div class="min-w-[33.33%] px-2">
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+          <div class="w-[360px] bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
             <img src="images/5.jpg" class="w-full h-64 object-cover" alt="DGS Infinity">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹5.10 Cr</p>
@@ -150,26 +153,21 @@
               <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
             </div>
           </div>
-        </div>
 
-        <div class="min-w-[33.33%] px-2">
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
-            <img src="images/img19.jpg" class="w-full h-64 object-cover" alt="DGS Sheetal Sky">
+          <div class="w-[360px] bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+            <img src="images/img19.jpg" class="w-full h-64 object-cover" alt="DGS Elite Towers">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹3.25 Cr</p>
               <h3 class="text-lg font-semibold">DGS Elite Towers</h3>
-              <p class="text-gray-500 text-sm mb-2">Jogeshwari, East</p>
+              <p class="text-gray-500 text-sm mb-2">Jogeshwari East</p>
               <p class="text-xs text-gray-700 mb-2">3BHK • 1150 sqft</p>
               <p class="text-xs text-gray-400 mb-3">Possession: Mar 2029</p>
               <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
             </div>
           </div>
-        </div>
-        
 
-        <div class="min-w-[33.33%] px-2">
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
-            <img src="images/img23.jpg" class="w-full h-64 object-cover" alt="DGS Sheetal Sky">
+          <div class="w-[360px] bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+            <img src="images/img23.jpg" class="w-full h-64 object-cover" alt="DGS Serenity">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹2.10 Cr</p>
               <h3 class="text-lg font-semibold">DGS Serenity</h3>
@@ -179,14 +177,13 @@
               <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
             </div>
           </div>
-        </div>
-        <div class="min-w-[33.33%] px-2">
-          <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
-            <img src="images/img8.jpg" class="w-full h-64 object-cover" alt="DGS Sheetal Sky">
+
+          <div class="w-[360px] bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+            <img src="images/img8.jpg" class="w-full h-64 object-cover" alt="DGS Sapphire Heights">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹1.95 Cr</p>
               <h3 class="text-lg font-semibold">DGS Sapphire Heights</h3>
-              <p class="text-gray-500 text-sm mb-2">Malad west</p>
+              <p class="text-gray-500 text-sm mb-2">Malad West</p>
               <p class="text-xs text-gray-700 mb-2">2BHK • 795 sqft</p>
               <p class="text-xs text-gray-400 mb-3">Possession: Aug 2029</p>
               <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
@@ -194,77 +191,33 @@
           </div>
         </div>
 
+        <!-- DUPLICATE SET (for infinite seamless loop) -->
+        <div class="flex gap-6">
+          <!-- Duplicate the same cards here -->
+          <div class="w-[360px] bg-white rounded-2xl shadow overflow-hidden"><img src="images/1.jpg" class="w-full h-64 object-cover"></div>
+          <div class="w-[360px] bg-white rounded-2xl shadow overflow-hidden"><img src="images/2.jpg" class="w-full h-64 object-cover"></div>
+          <div class="w-[360px] bg-white rounded-2xl shadow overflow-hidden"><img src="images/3.jpg" class="w-full h-64 object-cover"></div>
+          <div class="w-[360px] bg-white rounded-2xl shadow overflow-hidden"><img src="images/4.jpg" class="w-full h-64 object-cover"></div>
+          <div class="w-[360px] bg-white rounded-2xl shadow overflow-hidden"><img src="images/5.jpg" class="w-full h-64 object-cover"></div>
+          <div class="w-[360px] bg-white rounded-2xl shadow overflow-hidden"><img src="images/img19.jpg" class="w-full h-64 object-cover"></div>
+          <div class="w-[360px] bg-white rounded-2xl shadow overflow-hidden"><img src="images/img23.jpg" class="w-full h-64 object-cover"></div>
+          <div class="w-[360px] bg-white rounded-2xl shadow overflow-hidden"><img src="images/img8.jpg" class="w-full h-64 object-cover"></div>
+        </div>
 
       </div>
-
-      <!-- Right Arrow -->
-      <button id="nextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 bg-indigo-600 text-white p-3 rounded-full shadow-md hover:bg-indigo-700 transition z-10">
-        &#10095;
-      </button>
     </div>
   </section>
 
-  <!-- FOOTER (same as before) -->
+  <!-- FOOTER -->
   <footer class="bg-gray-900 text-gray-400 py-12">
-    <div class="container mx-auto grid md:grid-cols-3 gap-10 px-6">
-      <div>
-        <h3 class="text-white font-semibold text-lg mb-3">Contact</h3>
-        <p>DGS Sales Experience, Lokhandwala Complex, Andheri West, Mumbai-400053</p>
-        <p class="mt-2 text-indigo-400 font-medium">📞 +91-9619583969</p>
-      </div>
-      <div>
-        <h3 class="text-white font-semibold text-lg mb-3">Company</h3>
-        <ul class="space-y-1">
-          <li><a href="about.html" class="hover:text-indigo-400">About Us</a></li>
-          <li><a href="services.html" class="hover:text-indigo-400">Our Services</a></li>
-          <li><a href="vision.html" class="hover:text-indigo-400">Vision</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-white font-semibold text-lg mb-3">Follow Us</h3>
-        <div class="flex gap-5 text-2xl mt-3">
-          <a href="https://www.instagram.com/sunny_rajbhar20" target="_blank" class="hover:text-indigo-400">📸</a>
-          <a href="#" class="hover:text-indigo-400">📘</a>
-          <a href="#" class="hover:text-indigo-400">💼</a>
-        </div>
-      </div>
-    </div>
-    <div class="text-center text-gray-500 text-sm mt-10">
+    <div class="text-center text-gray-500 text-sm">
       © <script>document.write(new Date().getFullYear())</script> NoBrokerage Realty. All Rights Reserved.
     </div>
   </footer>
 
-  <!-- JS -->
   <script>
-    // Navbar mobile toggle
     document.getElementById("menuBtn").addEventListener("click", () => {
       document.getElementById("mobileMenu").classList.toggle("hidden");
-    });
-
-    // Auto-scroll slider (3 visible)
-    const slider = document.getElementById("projectSlider");
-    const cards = slider.children;
-    const totalCards = cards.length;
-    let index = 0;
-
-    const moveSlider = () => {
-      index = (index + 1) % totalCards;
-      slider.style.transform = `translateX(-${index * 33.33}%)`;
-    };
-
-    let autoScroll = setInterval(moveSlider, 1000);
-
-    // Manual controls
-    document.getElementById("nextBtn").addEventListener("click", moveSlider);
-    document.getElementById("prevBtn").addEventListener("click", () => {
-      index = (index - 1 + totalCards) % totalCards;
-      slider.style.transform = `translateX(-${index * 33.33}%)`;
-    });
-
-    // Pause on hover
-    slider.addEventListener("mouseenter", () => clearInterval(autoScroll));
-    slider.addEventListener("mouseleave", () => {
-      autoScroll = setInterval(moveSlider, 1000);
     });
   </script>
 </body>
