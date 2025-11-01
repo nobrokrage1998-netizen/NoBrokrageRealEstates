@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style>
     body { font-family: "Work Sans", sans-serif; }
@@ -25,7 +26,6 @@
     <div class="container mx-auto flex justify-between items-center px-6 py-4">
       <div class="flex items-center gap-2">
         <img src="logo1.png" alt="NoBrokerage Logo" class="h-10 w-auto">
-        
       </div>
 
       <nav class="hidden md:flex gap-6 text-gray-700 font-medium">
@@ -62,7 +62,7 @@
     </p>
   </section>
 
-  <!-- SERVICES GRID (All 6 Cards) -->
+  <!-- SERVICES GRID -->
   <section class="container mx-auto px-6 pb-20">
     <div class="grid md:grid-cols-3 gap-8">
 
@@ -96,7 +96,7 @@
         <p class="text-sm text-gray-600">Ensure every detail of your property is verified and authentic.</p>
       </div>
 
-      <div onclick="openForm('24x7 Support')" class="cursor-pointer bg-white p-6 rounded-2xl shadow-md hover:shadow-xl text-center transition-all float-anim" data-aos="zoom-in" data-aos-delay="500">
+      <div onclick="openForm('24×7 Support')" class="cursor-pointer bg-white p-6 rounded-2xl shadow-md hover:shadow-xl text-center transition-all float-anim" data-aos="zoom-in" data-aos-delay="500">
         <div class="text-4xl text-indigo-600 mb-3">🤝</div>
         <h3 class="font-semibold text-lg mb-2">24×7 Support</h3>
         <p class="text-sm text-gray-600">Our team is available around the clock to assist you anytime.</p>
@@ -115,24 +115,22 @@
         <input type="hidden" id="popupService" name="service">
         <div>
           <label class="block text-sm font-medium text-gray-700">Full Name</label>
-          <input type="text" name="name" required class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+          <input id="name" type="text" name="name" required class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">Email</label>
-          <input type="email" name="email" required class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+          <input id="email" type="email" name="email" required class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">Mobile Number</label>
-          <input type="tel" name="phone" pattern="[6-9][0-9]{9}" required title="Enter a valid 10-digit Indian number" class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+          <input id="phone" type="tel" name="phone" pattern="[6-9][0-9]{9}" required title="Enter a valid 10-digit Indian number" class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">Message</label>
-          <textarea name="message" rows="3" class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+          <textarea id="message" name="message" rows="3" class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
         </div>
         <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">Submit</button>
       </form>
-
-
     </div>
   </div>
 
@@ -144,12 +142,18 @@
   </footer>
 
   <script>
+    // ✅ AOS Animation Init
+    AOS.init();
+
+    // ✅ Google Apps Script Web App URL
     const scriptURL = "https://script.google.com/macros/s/AKfycbx_LzscHfkiMDltnmmmJH5S4CovOG-BUzk2NpTXhEU5a9F8MhpiTjoNEb-b5SyaL3YtSw/exec";
 
-    document.getElementById("myForm").addEventListener("submit", async function(event) {
+    // ✅ Form Submission Handler
+    document.getElementById("popupForm").addEventListener("submit", async function(event) {
       event.preventDefault();
 
       const data = {
+        service: document.getElementById("popupService").value,
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
         phone: document.getElementById("phone").value,
@@ -173,14 +177,26 @@
           window.location.href = "index.html";
         });
 
-        document.getElementById("myForm").reset();
+        document.getElementById("popupForm").reset();
+        closeForm();
       } catch (error) {
         Swal.fire("Error", "Something went wrong while submitting the form 😞", "error");
         console.error(error);
       }
     });
 
-    // Mobile menu toggle
+    // ✅ Popup Controls
+    function openForm(service) {
+      document.getElementById("popupModal").classList.remove("hidden");
+      document.getElementById("popupService").value = service;
+      document.getElementById("popupSubtitle").textContent = `You selected: ${service}`;
+    }
+
+    function closeForm() {
+      document.getElementById("popupModal").classList.add("hidden");
+    }
+
+    // ✅ Mobile Menu Toggle
     document.getElementById("menuBtn").addEventListener("click", () => {
       document.getElementById("mobileMenu").classList.toggle("hidden");
     });
