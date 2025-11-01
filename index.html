@@ -11,7 +11,7 @@
   <style>
     body { font-family: 'Work Sans', sans-serif; }
 
-    /* Hero background animation */
+    /* HERO BACKGROUND ANIMATION */
     .hero-slide {
       animation: slideBg 20s infinite linear;
       background-size: cover;
@@ -24,55 +24,47 @@
       75%, 100% { background-image: url('images/img8.jpg'); }
     }
 
-    /* Infinite slider core */
+    /* SLIDER */
     .slider-wrapper {
       overflow: hidden;
       position: relative;
     }
-
     .slider-track {
       display: flex;
       width: max-content;
-      animation: scrollLeft 20s linear infinite;
+      transition: transform 1s ease-in-out;
     }
 
-    .slider-wrapper:hover .slider-track {
-      animation-play-state: paused;
-    }
-
-    /* Scroll animation */
-    @keyframes scrollLeft {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* Hide scrollbar */
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* Buttons */
+    /* Scroll Buttons */
     .scroll-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       background: #4f46e5;
-      color: #fff;
+      color: white;
       border-radius: 9999px;
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       cursor: pointer;
-      transition: all 0.3s ease;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
       z-index: 10;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-    .scroll-btn:hover { background: #3730a3; transform: translateY(-50%) scale(1.1); }
-    .scroll-left { left: 0; }
-    .scroll-right { right: 0; }
+    .slider-wrapper:hover .scroll-btn {
+      opacity: 1;
+    }
+    .scroll-btn:hover {
+      background: #3730a3;
+      transform: translateY(-50%) scale(1.1);
+    }
+    .scroll-left { left: 0.5rem; }
+    .scroll-right { right: 0.5rem; }
 
-    /* Responsive card sizing */
+    /* Card widths */
     @media (max-width: 768px) {
       .property-card { width: 85vw; }
     }
@@ -132,16 +124,17 @@
   <section class="py-16 container mx-auto px-6">
     <h2 class="text-3xl font-semibold text-indigo-700 mb-10 text-center">Our Featured Projects</h2>
 
-    <div class="slider-wrapper">
+    <div class="slider-wrapper group">
       <div class="slider-track" id="projectSlider">
-        <!-- Original Set -->
-        <div class="flex gap-6">
+        <!-- Duplicate cards set for seamless looping -->
+        <div id="sliderContent" class="flex gap-6">
+          <!-- Cards (repeat as needed) -->
           <div class="property-card bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
             <img src="images/1.jpg" class="w-full h-64 object-cover" alt="DGS Sheetal Sky">
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹1.80 Cr</p>
               <h3 class="text-lg font-semibold">DGS SHEETAL Sky</h3>
-              <p class="text-gray-500 text-sm mb-2">Lokhandwala Complex, Andheri West</p>
+              <p class="text-gray-500 text-sm mb-2">Lokhandwala, Andheri West</p>
               <p class="text-xs text-gray-700 mb-2">1BHK • 462 sqft</p>
               <p class="text-xs text-gray-400 mb-3">Possession: Dec 2028</p>
             </div>
@@ -185,20 +178,11 @@
             <div class="p-5">
               <p class="text-indigo-600 font-bold mb-1">₹5.10 Cr</p>
               <h3 class="text-lg font-semibold">DGS Infinity</h3>
-              <p class="text-gray-500 text-sm mb-2">Versova, Andheri</p>
+              <p class="text-gray-500 text-sm mb-2">Versova</p>
               <p class="text-xs text-gray-700 mb-2">3BHK • 1320 sqft</p>
               <p class="text-xs text-gray-400 mb-3">Possession: Mar 2029</p>
             </div>
           </div>
-        </div>
-
-        <!-- Duplicate Set for Infinite Loop -->
-        <div class="flex gap-6">
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/1.jpg" class="w-full h-64 object-cover"></div>
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/2.jpg" class="w-full h-64 object-cover"></div>
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/3.jpg" class="w-full h-64 object-cover"></div>
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/4.jpg" class="w-full h-64 object-cover"></div>
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/5.jpg" class="w-full h-64 object-cover"></div>
         </div>
       </div>
 
@@ -215,19 +199,53 @@
     </div>
   </footer>
 
+  <!-- JS -->
   <script>
-    // Navbar toggle
-    document.getElementById("menuBtn").addEventListener("click", () => {
-      document.getElementById("mobileMenu").classList.toggle("hidden");
+    const slider = document.getElementById("projectSlider");
+    const sliderContent = document.getElementById("sliderContent");
+    const scrollLeftBtn = document.getElementById("scrollLeft");
+    const scrollRightBtn = document.getElementById("scrollRight");
+
+    // Duplicate cards for continuous scroll
+    sliderContent.innerHTML += sliderContent.innerHTML;
+
+    let scrollPosition = 0;
+    let cardWidth = 380; // approximate
+    let autoScroll;
+
+    function moveSlider() {
+      scrollPosition += cardWidth;
+      if (scrollPosition >= sliderContent.scrollWidth / 2) scrollPosition = 0;
+      slider.style.transform = `translateX(-${scrollPosition}px)`;
+    }
+
+    function startAutoScroll() {
+      autoScroll = setInterval(moveSlider, 2000); // every 2s
+    }
+
+    function stopAutoScroll() {
+      clearInterval(autoScroll);
+    }
+
+    startAutoScroll();
+
+    // Pause on hover
+    slider.addEventListener("mouseenter", stopAutoScroll);
+    slider.addEventListener("mouseleave", startAutoScroll);
+
+    // Buttons
+    scrollRightBtn.addEventListener("click", () => {
+      stopAutoScroll();
+      moveSlider();
+      setTimeout(startAutoScroll, 3000);
     });
 
-    // Manual scroll buttons
-    const slider = document.getElementById("projectSlider");
-    document.getElementById("scrollLeft").addEventListener("click", () => {
-      slider.scrollBy({ left: -400, behavior: "smooth" });
-    });
-    document.getElementById("scrollRight").addEventListener("click", () => {
-      slider.scrollBy({ left: 400, behavior: "smooth" });
+    scrollLeftBtn.addEventListener("click", () => {
+      stopAutoScroll();
+      scrollPosition -= cardWidth;
+      if (scrollPosition < 0) scrollPosition = sliderContent.scrollWidth / 2 - cardWidth;
+      slider.style.transform = `translateX(-${scrollPosition}px)`;
+      setTimeout(startAutoScroll, 3000);
     });
   </script>
 </body>
