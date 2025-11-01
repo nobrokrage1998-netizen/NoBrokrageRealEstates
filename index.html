@@ -10,76 +10,12 @@
 
   <style>
     body { font-family: 'Work Sans', sans-serif; }
-
-    /* HERO BACKGROUND */
-    .hero-slide {
-      animation: slideBg 20s infinite linear;
-      background-size: cover;
-      background-position: center;
-    }
+    .hero-slide { animation: slideBg 20s infinite linear; background-size: cover; background-position: center; }
     @keyframes slideBg {
       0%, 20% { background-image: url('images/img23.jpg'); }
       25%, 45% { background-image: url('images/img19.jpg'); }
       50%, 70% { background-image: url('images/img15.jpg'); }
       75%, 100% { background-image: url('images/img8.jpg'); }
-    }
-
-    /* CONTINUOUS SLIDER */
-    .slider-wrapper {
-      overflow: hidden;
-      position: relative;
-    }
-    .slider-track {
-      display: flex;
-      width: max-content;
-      animation: scrollLeft var(--scroll-speed, 25s) linear infinite;
-    }
-    .slider-wrapper:hover .slider-track {
-      animation-play-state: paused;
-    }
-    @keyframes scrollLeft {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* SCROLL BUTTONS */
-    .scroll-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #4f46e5;
-      color: white;
-      border-radius: 9999px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10;
-      opacity: 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    }
-    .slider-wrapper:hover .scroll-btn {
-      opacity: 1;
-    }
-    .scroll-btn:hover {
-      background: #3730a3;
-      transform: translateY(-50%) scale(1.1);
-    }
-    .scroll-left { left: 0.75rem; }
-    .scroll-right { right: 0.75rem; }
-
-    /* CARD SIZES */
-    @media (max-width: 768px) {
-      .property-card { width: 85vw; }
-    }
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .property-card { width: 45vw; }
-    }
-    @media (min-width: 1025px) {
-      .property-card { width: 360px; }
     }
   </style>
 </head>
@@ -130,81 +66,43 @@
   <!-- FEATURED PROJECTS -->
   <section class="py-16 container mx-auto px-6">
     <h2 class="text-3xl font-semibold text-indigo-700 mb-10 text-center">Our Featured Projects</h2>
-
-    <div class="slider-wrapper group">
-      <div class="slider-track" id="projectSlider">
-
-        <!-- FIRST SET -->
-        <div class="flex gap-6">
-          <div class="property-card bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
-            <img src="images/1.jpg" class="w-full h-64 object-cover" alt="DGS Sheetal Sky">
-            <div class="p-5">
-              <p class="text-indigo-600 font-bold mb-1">₹1.80 Cr</p>
-              <h3 class="text-lg font-semibold">DGS SHEETAL Sky</h3>
-              <p class="text-gray-500 text-sm mb-2">Lokhandwala, Andheri West</p>
-              <p class="text-xs text-gray-700 mb-2">1BHK • 462 sqft</p>
-              <p class="text-xs text-gray-400 mb-3">Possession: Dec 2028</p>
-            </div>
-          </div>
-
-          <div class="property-card bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
-            <img src="images/2.jpg" class="w-full h-64 object-cover" alt="DGS GuruPrasad">
-            <div class="p-5">
-              <p class="text-indigo-600 font-bold mb-1">₹2.80 Cr</p>
-              <h3 class="text-lg font-semibold">DGS GuruPrasad</h3>
-              <p class="text-gray-500 text-sm mb-2">Andheri West</p>
-              <p class="text-xs text-gray-700 mb-2">2BHK • 741 sqft</p>
-              <p class="text-xs text-gray-400 mb-3">Possession: Dec 2028</p>
-            </div>
-          </div>
-
-          <div class="property-card bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
-            <img src="images/3.jpg" class="w-full h-64 object-cover" alt="DGS Gurudarshan">
-            <div class="p-5">
-              <p class="text-indigo-600 font-bold mb-1">₹4.60 Cr</p>
-              <h3 class="text-lg font-semibold">DGS Gurudarshan</h3>
-              <p class="text-gray-500 text-sm mb-2">Lokhandwala, Andheri</p>
-              <p class="text-xs text-gray-700 mb-2">3BHK • 1205 sqft</p>
-              <p class="text-xs text-gray-400 mb-3">Possession: Dec 2028</p>
-            </div>
-          </div>
-
-          <div class="property-card bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
-            <img src="images/4.jpg" class="w-full h-64 object-cover" alt="DGS Harmony">
-            <div class="p-5">
-              <p class="text-indigo-600 font-bold mb-1">₹3.50 Cr</p>
-              <h3 class="text-lg font-semibold">DGS Harmony</h3>
-              <p class="text-gray-500 text-sm mb-2">Andheri West</p>
-              <p class="text-xs text-gray-700 mb-2">2BHK • 900 sqft</p>
-              <p class="text-xs text-gray-400 mb-3">Possession: Jun 2029</p>
-            </div>
-          </div>
-
-          <div class="property-card bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
-            <img src="images/5.jpg" class="w-full h-64 object-cover" alt="DGS Infinity">
-            <div class="p-5">
-              <p class="text-indigo-600 font-bold mb-1">₹5.10 Cr</p>
-              <h3 class="text-lg font-semibold">DGS Infinity</h3>
-              <p class="text-gray-500 text-sm mb-2">Versova</p>
-              <p class="text-xs text-gray-700 mb-2">3BHK • 1320 sqft</p>
-              <p class="text-xs text-gray-400 mb-3">Possession: Mar 2029</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- DUPLICATE SET for Continuous Loop -->
-        <div class="flex gap-6">
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/1.jpg" class="w-full h-64 object-cover"></div>
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/2.jpg" class="w-full h-64 object-cover"></div>
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/3.jpg" class="w-full h-64 object-cover"></div>
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/4.jpg" class="w-full h-64 object-cover"></div>
-          <div class="property-card bg-white rounded-2xl shadow overflow-hidden"><img src="images/5.jpg" class="w-full h-64 object-cover"></div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Property Card -->
+      <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+        <img src="images/1.jpg" class="w-full h-64 object-cover" alt="DGS Sheetal Sky">
+        <div class="p-5">
+          <p class="text-indigo-600 font-bold mb-1">₹1.80 Cr</p>
+          <h3 class="text-lg font-semibold">DGS SHEETAL Sky</h3>
+          <p class="text-gray-500 text-sm mb-2">Lokhandwala Complex, Andheri West</p>
+          <p class="text-xs text-gray-700 mb-2">1BHK • 462 sqft • Master Bedroom</p>
+          <p class="text-xs text-gray-400 mb-3">Possession: Dec 2028</p>
+          <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
         </div>
       </div>
 
-      <!-- Scroll Buttons -->
-      <div class="scroll-btn scroll-left" id="scrollLeft">❮</div>
-      <div class="scroll-btn scroll-right" id="scrollRight">❯</div>
+      <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+        <img src="images/2.jpg" class="w-full h-64 object-cover" alt="DGS GuruPrasad">
+        <div class="p-5">
+          <p class="text-indigo-600 font-bold mb-1">₹2.80 Cr</p>
+          <h3 class="text-lg font-semibold">DGS GuruPrasad</h3>
+          <p class="text-gray-500 text-sm mb-2">Lokhandwala Complex, Andheri West</p>
+          <p class="text-xs text-gray-700 mb-2">2BHK • 741 sqft • Balcony</p>
+          <p class="text-xs text-gray-400 mb-3">Possession: Dec 2028</p>
+          <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition-all">
+        <img src="images/3.jpg" class="w-full h-64 object-cover" alt="DGS Gurudarshan">
+        <div class="p-5">
+          <p class="text-indigo-600 font-bold mb-1">₹4.60 Cr</p>
+          <h3 class="text-lg font-semibold">DGS Gurudarshan</h3>
+          <p class="text-gray-500 text-sm mb-2">Lokhandwala Complex, Andheri West</p>
+          <p class="text-xs text-gray-700 mb-2">3BHK • 1205 sqft • 2 Balcony</p>
+          <p class="text-xs text-gray-400 mb-3">Possession: Dec 2028</p>
+          <a href="contact.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition">See Details</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -241,36 +139,39 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-gray-900 text-gray-400 py-12 text-center">
-    <div class="text-gray-500 text-sm">
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="container mx-auto grid md:grid-cols-3 gap-10 px-6">
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-3">Contact</h3>
+        <p>DGS Sales Experience, Lokhandwala Complex, Andheri West, Mumbai-400053</p>
+        <p class="mt-2 text-indigo-400 font-medium">📞 +91-9619583969</p>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-3">Company</h3>
+        <ul class="space-y-1">
+          <li><a href="about.html" class="hover:text-indigo-400">About Us</a></li>
+          <li><a href="services.html" class="hover:text-indigo-400">Our Services</a></li>
+          <li><a href="vision.html" class="hover:text-indigo-400">Vision</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold text-lg mb-3">Follow Us</h3>
+        <div class="flex gap-5 text-2xl mt-3">
+          <a href="https://www.instagram.com/sunny_rajbhar20" target="_blank" class="hover:text-indigo-400">📸</a>
+          <a href="#" class="hover:text-indigo-400">📘</a>
+          <a href="#" class="hover:text-indigo-400">💼</a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-gray-500 text-sm mt-10">
       © <script>document.write(new Date().getFullYear())</script> NoBrokerage Realty. All Rights Reserved.
     </div>
   </footer>
 
+  <!-- JS -->
   <script>
-    // Navbar toggle
     document.getElementById("menuBtn").addEventListener("click", () => {
       document.getElementById("mobileMenu").classList.toggle("hidden");
-    });
-
-    // Adjust scroll speed by screen size
-    const sliderTrack = document.querySelector(".slider-track");
-    function setScrollSpeed() {
-      const width = window.innerWidth;
-      if (width <= 768) sliderTrack.style.setProperty("--scroll-speed", "12s");
-      else if (width <= 1024) sliderTrack.style.setProperty("--scroll-speed", "18s");
-      else sliderTrack.style.setProperty("--scroll-speed", "25s");
-    }
-    window.addEventListener("resize", setScrollSpeed);
-    setScrollSpeed();
-
-    // Manual scroll buttons
-    const slider = document.getElementById("projectSlider");
-    document.getElementById("scrollLeft").addEventListener("click", () => {
-      slider.scrollBy({ left: -400, behavior: "smooth" });
-    });
-    document.getElementById("scrollRight").addEventListener("click", () => {
-      slider.scrollBy({ left: 400, behavior: "smooth" });
     });
   </script>
 </body>
